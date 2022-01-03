@@ -1,0 +1,20 @@
+.NavbarTabsList::-webkit-scrollbar {
+    height: 4px;
+}
+
+.NavbarTabsList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+ .NavbarTabsList::-webkit-scrollbar-thumb {
+    background: #888;
+    width: 5px;
+    height:5px
+  }
+  
+  /* Handle on hover */
+  .NavbarTabsList::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
