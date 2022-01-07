@@ -8,17 +8,17 @@ import Welcome from '../Welcome/Welcome';
 import ChatChoose from '../ChatArea/ChatChoose/ChatChoose';
 
 function App() {
-    return (
-        <Layout>
-            <Routes>
-                    <Route path="/" element={<Welcome />} />
-                    <Route path="/:userId" element={<ChatArea />}>
-                       <Route path="" element={<ChatChoose /> } />
-                       <Route path=":secondaryUser" element={<ChatDetail />} />
-                    </Route>
-            </Routes>
-        </Layout>
-    );
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/:userId" element={<ChatArea />}>
+          <Route path="" element={<ChatChoose /> } />
+          <Route path=":secondaryUser" element={<ChatDetail />} />
+        </Route>
+      </Routes>
+    </Layout>
+  );
 }
 
 export default App;

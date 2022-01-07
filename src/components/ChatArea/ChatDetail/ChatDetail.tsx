@@ -12,47 +12,50 @@ import ChatForm from './ChatForm';
 import ChatMessagesList from './ChatMessagesList/ChatMessagesList';
 
 export default function ChatDetail(){
-    const { userId = '' , secondaryUser = '' } = useParams();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const { userId = '', secondaryUser = '' } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
     
-    const primaryUserRecord : IUser | undefined = useSelector((state:RootState)=>selectUserById(state, userId));
-    const secondaryUserRecord : IUser | undefined = useSelector((state:RootState)=>selectUserById(state, secondaryUser));
+  const primaryUserRecord : IUser | undefined = useSelector(
+    (state:RootState)=>selectUserById(state, userId));
     
-    const secondaryUserName = secondaryUserRecord?.name;
-    const primaryUserName  = primaryUserRecord?.name;
+  const secondaryUserRecord : IUser | undefined = useSelector(
+    (state:RootState)=>selectUserById(state, secondaryUser));
     
-    const chatID = getChatID(userId , secondaryUser);
-    const chatHistory: Message[] = useSelector(selectChatMessages(chatID));
+  const secondaryUserName = secondaryUserRecord?.name;
+  const primaryUserName  = primaryUserRecord?.name;
+    
+  const chatID = getChatID(userId, secondaryUser);
+  const chatHistory: Message[] = useSelector(selectChatMessages(chatID));
 
-    useEffect(()=>{
-        if(secondaryUserName) return;
-        userId && navigate('/'+userId.toString());
-    } , [secondaryUserName , userId, navigate]);
+  useEffect(()=>{
+    if(secondaryUserName) return;
+    userId && navigate('/'+userId.toString());
+  }, [secondaryUserName, userId, navigate]);
 
-    const onMessageSubmit = (message:string)=>{
-        const timestamp = new Date().getTime();
-        const chatMessage = { 
-            messageId: timestamp.toString(),
-            usersKey: chatID, 
-            text: message,
-            from: userId || '',
-            fromUserName: primaryUserName || '',
-            to: secondaryUser || '',
-            toUserName: secondaryUserName || '',
-            time: timestamp
-        };
-        dispatch(addMessageToChat(chatMessage));
-        dispatch(incrementUserUnreadMessagesCount(secondaryUser));
-    }; 
+  const onMessageSubmit = (message:string)=>{
+    const timestamp = new Date().getTime();
+    const chatMessage = { 
+      messageId: timestamp.toString(),
+      usersKey: chatID, 
+      text: message,
+      from: userId || '',
+      fromUserName: primaryUserName || '',
+      to: secondaryUser || '',
+      toUserName: secondaryUserName || '',
+      time: timestamp
+    };
+    dispatch(addMessageToChat(chatMessage));
+    dispatch(incrementUserUnreadMessagesCount(secondaryUser));
+  }; 
 
-    return (
-        <div className='flex-1 lg:ml-5 h-full grid grid-rows-[40px_1fr_70px]'>
-            <div className='shadow-[0px_2px_2px_-2px_rgba(0,0,0,0.53)] z-[999999]'>
-                <p>{ secondaryUserName }</p>
-            </div>
-            <ChatMessagesList primaryUserID={userId} messages={chatHistory} />
-            <ChatForm onMessageSubmit={onMessageSubmit} />
-        </div>       
-    );
+  return (
+    <div className='flex-1 lg:ml-5 h-full grid grid-rows-[40px_1fr_70px]'>
+      <div className='shadow-[0px_2px_2px_-2px_rgba(0,0,0,0.53)] z-[999999]'>
+        <p>{ secondaryUserName }</p>
+      </div>
+      <ChatMessagesList primaryUserID={userId} messages={chatHistory} />
+      <ChatForm onMessageSubmit={onMessageSubmit} />
+    </div>       
+  );
 }

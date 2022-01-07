@@ -1,5 +1,5 @@
 import Message from './Message.interface';
 
-interface MessageState extends Array<Message> { }
+type MessageState = Array<Message>
 
 export default MessageState;

@@ -7,10 +7,12 @@ import { RootState } from './store';
 const userSelectors = usersAdapter.getSelectors((state:RootState) => state.users);
 
 export const selectAllUsers = (state: RootState)=>userSelectors.selectAll(state);
-export const selectUserById = (state: RootState, id:string)=>userSelectors.selectById(state , id);
+export const selectUserById = (state: RootState, id:string)=>userSelectors.selectById(state, id);
 
 //Messages Selectors
 const messageSelectors = messageAdapter.getSelectors((state:RootState) => state.messages);
 
 export const selectAllMessages = (state: RootState)=>messageSelectors.selectAll(state);
-export const selectChatMessages = (userKey:string)=>(state: RootState)=>messageSelectors.selectAll(state).filter((message:Message)=>message.usersKey==userKey);
+export const selectChatMessages = (userKey:string)=>(state: RootState)=>(
+  messageSelectors.selectAll(state).filter((message:Message)=>message.usersKey==userKey)
+);

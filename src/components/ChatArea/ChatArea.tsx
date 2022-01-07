@@ -6,17 +6,17 @@ import AsideNav from './AsideNav/AsideNav';
 
 export default function ChatArea(){
 
-    const { userId } = useParams();
-    const dispatch = useDispatch();
+  const { userId } = useParams();
+  const dispatch = useDispatch();
     
-    useEffect(() => {
-        dispatch(resetUserUnreadMessagesCount(userId));
-    }, [userId, dispatch]);
+  useEffect(() => {
+    dispatch(resetUserUnreadMessagesCount(userId));
+  }, [userId, dispatch]);
 
-    return (
-        <div className='p-4 h-full flex'>
-            <AsideNav />
-            <Outlet />
-        </div>       
-    );
+  return (
+    <div className='p-4 h-full flex'>
+      <AsideNav />
+      <Outlet />
+    </div>       
+  );
 }
