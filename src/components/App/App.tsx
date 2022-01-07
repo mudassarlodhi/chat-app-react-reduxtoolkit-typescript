@@ -11,13 +11,11 @@ function App() {
     return (
         <Layout>
             <Routes>
-                <Route path="/" >
-                    <Route path="" element={<Welcome />} />
-                    <Route path=":userId" element={<ChatArea />}>
+                    <Route path="/" element={<Welcome />} />
+                    <Route path="/:userId" element={<ChatArea />}>
                        <Route path="" element={<ChatChoose /> } />
                        <Route path=":secondaryUser" element={<ChatDetail />} />
                     </Route>
-                </Route>
             </Routes>
         </Layout>
     );

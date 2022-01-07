@@ -11,7 +11,7 @@ export default function ChatArea(){
     
     useEffect(() => {
         dispatch(resetUserUnreadMessagesCount(userId));
-    }, [userId, dispatch, resetUserUnreadMessagesCount]);
+    }, [userId, dispatch]);
 
     return (
         <div className='p-4 h-full flex'>

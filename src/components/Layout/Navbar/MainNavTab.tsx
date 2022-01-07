@@ -12,7 +12,7 @@ interface IMainNavTabProps {
 
 export default function MainNavTab({ user, userId, unreadMessages }: IMainNavTabProps) {
     const dispatch = useDispatch();
-   
+
     const onClickDelete = useCallback((event: MouseEvent)=>{
         event.preventDefault();
         dispatch(deleteUser(userId));

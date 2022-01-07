@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, selectUsers } from '../../../store/slices/user.slice';
+import { selectAllUsers } from '../../../store/selectors';
+import { addUser } from '../../../store/slices/user.slice';
 import MainNavTab from './MainNavTab';
 import classes from './Navbar.module.css';
 
 export default function Navbar(){
-    const users = useSelector(selectUsers);
+    const users = useSelector(selectAllUsers);
     const dispatch = useDispatch();
+
     return (
         <div className='h-[45px] bg-indigo-500/50 flex just items-end justify-start px-24'>
             <div className={'flex mx-2 max-w-[calc(100%-50px)] overflow-y-auto '+classes.NavbarTabsList} >

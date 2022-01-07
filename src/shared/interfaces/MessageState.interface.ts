@@ -1,7 +1,5 @@
 import Message from './Message.interface';
 
-interface MessageState { 
-    [key: string]: Message[]
-}
+interface MessageState extends Array<Message> { }
 
 export default MessageState;

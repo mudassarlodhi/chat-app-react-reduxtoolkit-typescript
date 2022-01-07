@@ -1,5 +1,6 @@
  interface Message {
     messageId: string,
+    usersKey: string,
     text: string,
     from: string,
     fromUserName: string,
